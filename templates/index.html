@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block container %}
+<main>
+    <div id="mainLeft">
+        <h1 class="welcomeText">
+            Welcome to Well-being Bookstore!
+        </h1>
+
+        <p class="welcomeText">
+            Interact if you want to enrich your life with books related to wellbeing. 
+        </p>
+        <p class="welcomeText">
+            You can search for books you are interested in.
+        </p>
+        <p class="welcomeText">
+            We hope you learn another great tip on improving your life after interacting with us!
+        </p>
+    </div>
+
+    <div id="mainRight">
+        <h1>Shop by category:</h1>
+        <div id="categorySelections">
+            {% for category in categories %}
+            <div class="category">
+                <p>
+                    <a href="{{ url_for('category', categoryId=category.categoryId) }}">
+                        {{ category.categoryName }}
+                    </a>
+                </p>
+
+                <a href="{{ url_for('category', categoryId=category.categoryId) }}">
+                    <img
+                        src="{{ url_for('static', filename='images/categories/' + category.categoryName|lower|replace(' ', '-') + '-category.jpg') }}"
+                        alt="{{ category.categoryName }}"
+                    >
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock %}
